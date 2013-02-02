@@ -1,6 +1,6 @@
-riamall2013
+Orchestrate JS
 ===========
 
-Detta är ett mallrepositorium för projektet i [RIA-kursen 2013](https://coursepress.lnu.se/kurs/ria-utveckling-med-javascript/). Forka detta och använd som grund i din applikation!
+A small project management app built with Backbone and Require.js.
 
-Mallen innehåller inga övriga filer alls, utan är bara ett sätt för kursledningen att enkelt hålla koll på er. :)
+This project is part of the course ['RIA-utveckling med JavaScript'](https://coursepress.lnu.se/kurs/ria-utveckling-med-javascript/) (Rich Internet Application Development in JavaScript) at [Linneaus University](http://lnu.se/?l=en).
