@@ -19,6 +19,14 @@
         padding: 9px 0;
       }
 
+      .control-group {
+        padding: 0 15px;
+      }
+
+      .add {
+        float: right;
+      }
+
       @media (max-width: 980px) {
         /* Enable use of floated navbar text */
         .navbar-text.pull-right {
@@ -62,14 +70,15 @@
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
-            <ul id="project-list"></ul>
-          </div><!--/.well -->
-          <a href="#addproject" class="btn btn-inverse btn-block">Add a new project</a>
+            <ul class="nav nav-list" id="projects">
+              Loading...
+            </ul>
+          </div>
+          <div id="showform"></div>
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h2>Hello, world!</h2>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            <h2>Orchestrate issue tracker</h2>
           </div>
         </div><!--/span-->
       </div><!--/row-->
@@ -81,6 +90,50 @@
       </footer>
 
     </div><!--/.fluid-container-->
+
+    <!-- Le handlebars templates
+    ================================================== -->
+    <script type="text/x-handlebars-template" id="app-template">
+      <button type="button" class="add">+</button>
+      <li class="nav-header">Projects ({{ count }})</li>
+      <div id="project-list"></div>
+    </script>
+    
+    <script type="text/x-handlebars-template" id="project-list-template">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <li class="project"><a href="/project/{{ cid }}">{{ title }}</a></li>
+    </script>
+    
+    <script type="text/x-handlebars-template" id="add-project-template">
+      <legend>Add a project</legend>
+      <fieldset>
+        <div class="well sidebar-nav">
+          <div class='control-group'>
+            <label class='control-label' for='title'>Title</label>
+            <div class='controls'>
+              <input type='text' class='input' id='title'>
+            </div>
+          </div>
+          <div class='control-group'>
+            <label class='control-label' for='description'>Description</label>
+            <div class='controls'>
+              <textarea rows="3" id='description'></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-inverse btn-block">Add project</button>
+        </div>
+      </fieldset>
+    </script>
+
+    <script type="text/x-handlebars-template" id="project-template">
+      <h2>{{ title }}</h2>
+      <p>{{ description }}</p>
+      <button type="button add-issue" class="btn btn-inverse">Add issue</button>
+      <button type="button archive-project" class="btn btn-warning">Archive project</button>
+      <button type="button delete-project" class="btn btn-danger">Delete project</button>
+    </script>
 
     <!-- Le javascript
     ================================================== -->

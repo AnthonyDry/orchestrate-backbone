@@ -2,7 +2,7 @@ define([
   'underscore',
   'backbone',
   'backboneLocalstorage',
-  'models/project'
+  '../models/project'
 ], function( _, Backbone, Store, Project ) {
 
   var ProjectsCollection = Backbone.Collection.extend({
