@@ -74,7 +74,7 @@
               Loading...
             </ul>
           </div>
-          <div id="showform"></div>
+          <div id="add-project-form"></div>
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
@@ -94,17 +94,17 @@
     <!-- Le handlebars templates
     ================================================== -->
     <script type="text/x-handlebars-template" id="app-template">
-      <button type="button" class="add">+</button>
+      <a href="/#project/add" class="btn btn-mini add">+</a>
       <li class="nav-header">Projects ({{ count }})</li>
       <div id="project-list"></div>
     </script>
     
     <script type="text/x-handlebars-template" id="project-list-template">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <li class="project"><a href="/project/{{ cid }}">{{ title }}</a></li>
+      <li class="project"><a href="/#project/{{ id }}">{{ title }}</a></li>
     </script>
     
     <script type="text/x-handlebars-template" id="add-project-template">
+      <form>
       <legend>Add a project</legend>
       <fieldset>
         <div class="well sidebar-nav">
@@ -125,14 +125,17 @@
           <button type="submit" class="btn btn-inverse btn-block">Add project</button>
         </div>
       </fieldset>
+      </form>
     </script>
 
     <script type="text/x-handlebars-template" id="project-template">
       <h2>{{ title }}</h2>
       <p>{{ description }}</p>
-      <button type="button add-issue" class="btn btn-inverse">Add issue</button>
-      <button type="button archive-project" class="btn btn-warning">Archive project</button>
-      <button type="button delete-project" class="btn btn-danger">Delete project</button>
+      <form>
+      <button type="button" class="btn btn-inverse add-issue">Add issue</button>
+      <button type="button" class="btn btn-warning archive-project">Archive project</button>
+      <button type="button" class="btn btn-danger delete-project">Delete project</button>
+      </form>
     </script>
 
     <!-- Le javascript

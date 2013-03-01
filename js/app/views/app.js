@@ -3,9 +3,8 @@ define([
   'backbone',
   'handlebars',
   '../collections/projects',
-  '../views/projectlist',
-  '../views/addproject'
-], function( $, Backbone, Handlebars, Projects, ProjectListView, AddProjectView ) {
+  '../views/projectlist'
+], function( $, Backbone, Handlebars, Projects, ProjectListView ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
@@ -18,9 +17,6 @@ define([
       this.projects.on('all', this.render, this);
       this.projects.fetch();
     },
-    events: {
-      'click .add': 'showForm'
-    },
     render: function() {
       this.$el.html(this.template(this));
       this.projects.each(this.populateProjectList, this);
@@ -32,11 +28,6 @@ define([
     },
     count: function() {
       return this.projects.length;
-    },
-    showForm: function () {
-      var view = new AddProjectView({collection: this.projects});
-      $('#showform').replaceWith( view.render().el );
-      this.render();
     }
   });
 

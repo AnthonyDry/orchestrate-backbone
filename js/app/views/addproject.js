@@ -9,9 +9,11 @@
   };
 
   var AddProjectView = Backbone.View.extend({
-    tagName: 'form',
-    className: 'projectform',
     template: template('add-project'),
+    initialize: function(options) {
+      this.el = options.el,
+      this.router = options.router
+    },
     events: {
       'submit': 'add'
     },
@@ -25,9 +27,7 @@
         title: this.$('#title').val(),
         description: this.$('#description').val()
       });
-      $('.projectform').replaceWith("<div id='showform'></div>");
-      this.render();
-
+      this.router.navigate("", true);
     }
   });
 
