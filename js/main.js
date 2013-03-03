@@ -4,6 +4,7 @@ require.config({
     backbone: 'libs/backbone/backbone-min',
     jquery: 'libs/jquery/jquery-1.9.1.min',
     backboneLocalstorage: 'libs/backbone/backbone.localStorage',
+    backboneRelational: 'libs/backbone/backbone.relational',
     text: 'libs/require/text',
     handlebars: 'libs/handlebars/handlebars'
   },
@@ -21,6 +22,10 @@ require.config({
     backboneLocalstorage: {
       deps: ['backbone'],
       exports: 'Store'
+    },
+    backboneRelational: {
+      deps: ['backbone'],
+      exports: 'Relational'
     },
     handlebars: {
       exports: 'Handlebars'

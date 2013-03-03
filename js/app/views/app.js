@@ -4,8 +4,9 @@ define([
   'handlebars',
   '../collections/projects',
   '../views/projectlist',
-  '../views/project'
-], function( $, Backbone, Handlebars, Projects, ProjectListView, ProjectView ) {
+  '../views/project',
+  '../views/issue'
+], function( $, Backbone, Handlebars, Projects, ProjectListView, ProjectView, IssueView ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
@@ -18,6 +19,7 @@ define([
       this.projects.on('all', this.render, this);
       this.projects.fetch();
       this.ws = $('.workspace');
+      this.it = $('#issue-table');
     },
     events: {
       'click #addproject': 'addProject',
@@ -46,8 +48,12 @@ define([
       event.preventDefault();
       var id = $(event.currentTarget).data("id");
       var project = this.projects.get(id);
+      
       var projectView = new ProjectView({model: project, el: this.ws});
       this.ws.append(projectView.render());
+
+      var issueView = new IssueView({el: this.it});
+      this.it.append(issueView.render());
     }
   });
 

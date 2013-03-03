@@ -130,7 +130,10 @@
     <script type="text/x-handlebars-template" id="project-template">
       <h2>{{ title }}</h2>
       <h4>Issues</h4>
-      
+      <div id="issue-table"></div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="issue-template">
       <table class="table table-striped">
         <tr>
           <th>Title</th>
@@ -151,7 +154,7 @@
             </td>
             <td><button type="submit" class="btn btn-inverse" id="addissue">Add</button></td>
           </tr>
-          <tr id="issues">
+          <tr id="issue-list">
           </tr>
         </form>
       </table> 
