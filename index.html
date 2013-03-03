@@ -27,6 +27,10 @@
         float: right;
       }
 
+      form {
+        margin: 0;
+      }
+
       @media (max-width: 980px) {
         /* Enable use of floated navbar text */
         .navbar-text.pull-right {
@@ -56,12 +60,6 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="#">Orchestrate</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#statuses">Statuses</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
@@ -74,12 +72,14 @@
               Loading...
             </ul>
           </div>
-          <div id="add-project-form"></div>
-        </div><!--/span-->
-        <div class="span9">
-          <div class="hero-unit">
-            <h2>Orchestrate issue tracker</h2>
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list" id="statuses">
+              Loading...
+            </ul>
           </div>
+        </div><!--/span-->
+        <div class="span9 workspace">
+            <h2>Orchestrate issue tracker</h2>
         </div><!--/span-->
       </div><!--/row-->
 
@@ -94,48 +94,74 @@
     <!-- Le handlebars templates
     ================================================== -->
     <script type="text/x-handlebars-template" id="app-template">
-      <a href="/#project/add" class="btn btn-mini add">+</a>
-      <li class="nav-header">Projects ({{ count }})</li>
+      <li class="nav-header">Projects ({{ projectCount }})</li>
       <div id="project-list"></div>
+      <li class="nav-header">Add new project</li>
+      <form>
+        <div class="input-append">
+          <input class="span12" id="title" type="text">
+          <button type="submit" class="btn btn-inverse" id="addproject">Add</button>
+        </div>
+      </form>
+    </script>
+
+    <script type="text/x-handlebars-template" id="status-template">
+      <li class="nav-header">Statuses ({{ statusCount }})</li>
+      <div id="status-list"></div>
+      <li class="nav-header">Add new status</li>
+      <form>
+        <div class="input-append">
+          <input class="span12" id="statusTitle" type="text">
+          <button type="submit" class="btn btn-inverse" id="addstatus">Add</button>
+        </div>
+      </form>
     </script>
     
     <script type="text/x-handlebars-template" id="project-list-template">
-      <li class="project"><a href="/#project/{{ id }}">{{ title }}</a></li>
+      <button type="button" class="close delete-project">&times;</button>
+      <li><a href="#" class="project" data-id="{{ id }}">{{ title }}</a></li>
     </script>
-    
-    <script type="text/x-handlebars-template" id="add-project-template">
-      <form>
-      <legend>Add a project</legend>
-      <fieldset>
-        <div class="well sidebar-nav">
-          <div class='control-group'>
-            <label class='control-label' for='title'>Title</label>
-            <div class='controls'>
-              <input type='text' class='input' id='title'>
-            </div>
-          </div>
-          <div class='control-group'>
-            <label class='control-label' for='description'>Description</label>
-            <div class='controls'>
-              <textarea rows="3" id='description'></textarea>
-            </div>
-          </div>
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="btn btn-inverse btn-block">Add project</button>
-        </div>
-      </fieldset>
-      </form>
+
+    <script type="text/x-handlebars-template" id="status-list-template">
+      <button type="button" class="close delete-status">&times;</button>
+      <li>{{ statusTitle }}</li>
     </script>
 
     <script type="text/x-handlebars-template" id="project-template">
       <h2>{{ title }}</h2>
-      <p>{{ description }}</p>
-      <form>
-      <button type="button" class="btn btn-inverse add-issue">Add issue</button>
-      <button type="button" class="btn btn-warning archive-project">Archive project</button>
-      <button type="button" class="btn btn-danger delete-project">Delete project</button>
-      </form>
+      <h4>Issues</h4>
+      
+      <table class="table table-striped">
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+        <form>
+          <tr>
+            <td><input id="issueTitle" type="text"></td>
+            <td><input id="issueDescription" type="text"></td>
+            <td>
+              <select>
+                {{#each statuses}}
+                  <option>{{statusTitle}}</option>
+                {{/each}}
+              </select>
+            </td>
+            <td><button type="submit" class="btn btn-inverse" id="addissue">Add</button></td>
+          </tr>
+          <tr id="issues">
+          </tr>
+        </form>
+      </table> 
+    </script>
+
+    <script type="text/x-handlebars-template" id="issue-list-template">
+      <td>{{ issueTitle }}</td>
+      <td>{{ issueDescription }}</td>
+      <td>STATUS</td>
+      <td><button type="button" class="close delete-issue">&times;</button></td>
     </script>
 
     <!-- Le javascript

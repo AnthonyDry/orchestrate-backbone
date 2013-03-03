@@ -6,8 +6,7 @@ define([
   var ProjectModel = Backbone.Model.extend({
 
     defaults: {
-      title: '',
-      description: '',
+      title: 'Title',
       archived: false
     },
     toggle: function() {

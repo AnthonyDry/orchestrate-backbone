@@ -2,22 +2,22 @@
   'jquery',
   'backbone',
   'handlebars',
-  '../collections/projects',
-], function( $, Backbone, Handlebars, Projects ) {
+  '../collections/statuses',
+], function( $, Backbone, Handlebars, Statuses ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
   };
 
   var ProjectView = Backbone.View.extend({
-    el: $('.hero-unit'),
     template: template('project'),
     initialize: function(options) {
-      this.el = options.el,
-      this.router = options.router
+      this.statuses = Statuses;
+      this.statuses.on('all', this.render, this);
+      this.statuses.fetch();
+      this.el = options.el;
     },
     events: {
-      'click .delete-project': 'delete'
     },
     render: function() {
       this.$el.html(this.template(this));
@@ -25,12 +25,7 @@
     },
     
     title: function() { return this.model.get('title'); },
-    description: function() { return this.model.get('description'); },
-    
-    delete: function() {
-      this.model.destroy();
-      this.router.navigate("/project/deleted", true);
-    }
+    statuses: function() { return this.statuses.toJSON(); }
   });
 
   return ProjectView;

@@ -8,18 +8,18 @@
     return Handlebars.compile($('#'+name+'-template').html());
   };
 
-  var ProjectListView = Backbone.View.extend({
-    template: template('project-list'),
+  var StatusListView = Backbone.View.extend({
+    template: template('status-list'),
     
     events: {
-      'click .delete-project': 'delete'
+      'click .delete-status': 'delete'
     },
     render: function() {
       this.$el.html(this.template(this));
       return this;
     },
     
-    title: function() { return this.model.get('title'); },
+    statusTitle: function() { return this.model.get('statusTitle'); },
     id: function () { return this.model.get('id'); },
 
     delete: function() {
@@ -27,5 +27,5 @@
     }
   });
 
-  return ProjectListView;
+  return StatusListView;
 });
