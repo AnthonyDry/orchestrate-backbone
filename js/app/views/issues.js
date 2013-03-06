@@ -3,14 +3,14 @@ define([
   'backbone',
   'handlebars',
   '../collections/issues',
-  '../views/issue-in-list'
-], function( $, Backbone, Handlebars, Issues, IssueListView ) {
+  '../views/issue'
+], function( $, Backbone, Handlebars, Issues, IssueView ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
   };
 
-  var IssueCollectionView = Backbone.View.extend({
+  var IssuesView = Backbone.View.extend({
     template: template('issue'),
     initialize: function(options) {
       this.issues = options.collection;
@@ -23,7 +23,7 @@ define([
     },
 
     populateIssueList: function(issue) {
-      var view = new IssueListView({model: issue});
+      var view = new IssueView({model: issue});
       this.$('#issue-list').append(view.render().el);
     },
     issueCount: function() {
@@ -31,5 +31,5 @@ define([
     }
   });
 
-  return IssueCollectionView;
+  return IssuesView;
 });

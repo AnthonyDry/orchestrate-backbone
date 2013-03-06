@@ -41,18 +41,18 @@ require.config({
 require([
   'jquery',
   'backbone',
-  'app/views/project',
-  'app/views/status'
-], function( $, Backbone, ProjectView, StatusView ) {
+  'app/views/projects',
+  'app/views/statuses'
+], function( $, Backbone, ProjectsView, StatusesView ) {
 
   var projects = $('#projects');
   var statuses = $('#statuses');
 
-  var projectView = new ProjectView({el: projects});
-  projects.empty().append(projectView.render().projects);
+  var projectsView = new ProjectsView({el: projects});
+  projects.empty().append(projectsView.render().projects);
 
-  var statusView = new StatusView({el: statuses});
-  statuses.empty().append(statusView.render().statuses);
+  var statusesView = new StatusesView({el: statuses});
+  statuses.empty().append(statusesView.render().statuses);
 
   Backbone.history.start();
 });

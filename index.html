@@ -129,23 +129,25 @@
 
     <script type="text/x-handlebars-template" id="project-full-template">
       <h2>{{ title }}</h2>
+      <div class="well">
+        <h4>Add issue</h4>
+        <div id="issue-form"></div>
+      </div>
       <h4>Issues</h4>
-      <div id="issue-form"></div>
       <div id="issue-table"></div>
     </script>
 
     <script type="text/x-handlebars-template" id="issue-form-template">
-      <h4>Add issue</h4>
-      <p><input id="issueTitle" type="text"></p>
-      <p><input id="issueDescription" type="text"></p>
-      <p>
-        <select>
-          {{#each statuses}}
-            <option>{{statusTitle}}</option>
-          {{/each}}
-        </select>
-      </p>
-      <p><button type="submit" class="btn btn-inverse" id="addissue">Add</button></p>
+      <form>
+          <input id="issueTitle" type="text" placeholder="Title">
+          <input id="issueDescription" type="text" placeholder="Description">
+          <select id="all-statuses">
+            {{#each statuses}}
+              <option>{{statusTitle}}</option>
+            {{/each}}
+          </select>
+          <button type="submit" class="btn btn-inverse" id="addissue">Add</button>
+      <form>
     </script>
 
     <script type="text/x-handlebars-template" id="issue-template">   
@@ -164,12 +166,10 @@
     </script>
 
     <script type="text/x-handlebars-template" id="issue-list-template">
-      <tr>
-        <td>{{ issueTitle }}</td>
-        <td>{{ issueDescription }}</td>
-        <td>STATUS</td>
-        <td><button type="button" class="close delete-issue">&times;</button></td>
-      </tr>
+      <td>{{ issueTitle }}</td>
+      <td>{{ issueDescription }}</td>
+      <td>STATUS</td>
+      <td><button type="button" class="close delete-issue">&times;</button></td>
     </script>
 
     <!-- Le javascript

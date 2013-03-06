@@ -8,24 +8,24 @@
     return Handlebars.compile($('#'+name+'-template').html());
   };
 
-  var ProjectView = Backbone.View.extend({
-    template: template('project-list'),
-    
+  var IssueListView = Backbone.View.extend({
+    tagName: 'tr',
+    template: template('issue-list'),
     events: {
-      'click .delete-project': 'delete'
+      'click .delete-issue': 'delete'
     },
     render: function() {
       this.$el.html(this.template(this));
       return this;
     },
     
-    title: function() { return this.model.get('title'); },
-    id: function () { return this.model.get('id'); },
+    issueTitle: function() { return this.model.get('issueTitle'); },
+    issueDescription: function () { return this.model.get('issueDescription'); },
 
     delete: function() {
       this.model.destroy();
     }
   });
 
-  return ProjectView;
+  return IssueListView;
 });

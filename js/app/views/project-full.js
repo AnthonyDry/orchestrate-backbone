@@ -5,13 +5,13 @@
   '../collections/statuses',
   '../views/issues',
   '../views/issue-form'
-], function( $, Backbone, Handlebars, Statuses, IssueView, IssueFormView ) {
+], function( $, Backbone, Handlebars, Statuses, IssuesView, IssueFormView ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
   };
 
-  var ProjectView = Backbone.View.extend({
+  var ProjectFullView = Backbone.View.extend({
     template: template('project-full'),
     initialize: function(options) {
       this.render();
@@ -23,8 +23,8 @@
       issueFormView.render();
       issueFormView.on("newIssue", this.addIssue, this);
 
-      var issueView = new IssueView({ el: this.$('#issue-table'), collection: this.model.get('issues') });
-      issueView.render();
+      var issuesView = new IssuesView({ el: this.$('#issue-table'), collection: this.model.get('issues') });
+      issuesView.render();
 
       return this;
     },
@@ -32,8 +32,10 @@
 
     addIssue: function(issue) {
       this.model.get('issues').add(issue);
+      issue.save();
+      this.model.save();
     }
   });
 
-  return ProjectView;
+  return ProjectFullView;
 });
