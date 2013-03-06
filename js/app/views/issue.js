@@ -13,10 +13,7 @@ define([
   var IssueView = Backbone.View.extend({
     template: template('issue'),
     initialize: function(options) {
-      this.issues = new Issues();
-      //this.issues.on('all', this.render, this);
-      this.issues.fetch();
-      this.el = options.el;
+      this.issues = options.collection;
     },
     events: {
       'click #addissue': 'addIssue'
@@ -24,7 +21,7 @@ define([
     render: function() {
       this.$el.html(this.template(this));
       this.issues.each(this.populateIssueList, this);
-      // console.log(this);
+      console.log(this);
       return this;
     },
 
