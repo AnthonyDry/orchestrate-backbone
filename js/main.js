@@ -24,8 +24,10 @@ require.config({
       exports: 'Store'
     },
     backboneRelational: {
-      deps: ['backbone'],
-      exports: 'Relational'
+      deps: [
+        'underscore', 
+        'jquery'
+      ]
     },
     handlebars: {
       exports: 'Handlebars'
