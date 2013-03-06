@@ -41,9 +41,11 @@ require.config({
 require([
   'jquery',
   'backbone',
-  'app/routers/router'
-], function( $, Backbone, Router ) {
+  'app/views/app'
+], function( $, Backbone, AppView ) {
 
-  new Router({ el: $('#projects') });
+  var el = $('#projects');
+  var appView = new AppView();
+  el.empty().append(appView.render().el);
   Backbone.history.start();
 });

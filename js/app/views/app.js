@@ -4,8 +4,9 @@ define([
   'handlebars',
   '../collections/projects',
   '../views/project-in-list',
-  '../views/project'
-], function( $, Backbone, Handlebars, Projects, ProjectListView, ProjectView ) {
+  '../views/project',
+    '../views/status'
+], function( $, Backbone, Handlebars, Projects, ProjectListView, ProjectView, StatusView ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
@@ -17,7 +18,13 @@ define([
       this.projects = new Projects();
       this.projects.on('all', this.render, this);
       this.projects.fetch();
+      
       this.ws = $('.workspace');
+      this.status = $('#statuses');
+
+      var statusView = new StatusView({el: this.status});
+      this.status.empty();
+      this.status.append(statusView.render().status);
     },
     events: {
       'click #addproject': 'addProject',
