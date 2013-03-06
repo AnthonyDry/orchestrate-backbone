@@ -1,13 +1,11 @@
 define([
-  'underscore',
   'backbone',
-  'backboneLocalstorage',
   '../models/status'
-], function( _, Backbone, Store, Status ) {
+], function( Backbone, Status ) {
 
   var StatusesCollection = Backbone.Collection.extend({
     model: Status,
-    localStorage: new Store('statuses-backbone')
+    localStorage: new Backbone.localStorage('statuses-backbone')
   });
 
   return new StatusesCollection();

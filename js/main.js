@@ -1,32 +1,35 @@
 require.config({
   paths: {
     underscore: 'libs/underscore/underscore-min',
-    backbone: 'libs/backbone/backbone-min',
     jquery: 'libs/jquery/jquery-1.9.1.min',
-    backboneLocalstorage: 'libs/backbone/backbone.localStorage',
-    backboneRelational: 'libs/backbone/backbone.relational',
     text: 'libs/require/text',
-    handlebars: 'libs/handlebars/handlebars'
+    handlebars: 'libs/handlebars/handlebars',
+    purebackbone: 'libs/backbone/Backbone',
+    'bb-loc': 'libs/backbone/backboneLocalstorage',
+    'bb-rel': 'libs/backbone/backbone.relational',
+    backbone: 'libs/backbone/backbone.all'
   },
 	shim: {
 		underscore: {
 			exports: '_'
 		},
-		backbone: {
+		purebackbone: {
 			deps: [
         'underscore', 
         'jquery'
       ],
 			exports: 'Backbone'
 		},
-    backboneLocalstorage: {
-      deps: ['backbone'],
-      exports: 'Store'
-    },
-    backboneRelational: {
+    'bb-rel': {
       deps: [
-        'underscore', 
-        'jquery'
+        'purebackbone',
+        'underscore'
+      ]
+    },
+    'bb-loc': {
+      deps: [
+        'purebackbone',
+        'underscore'
       ]
     },
     handlebars: {
@@ -37,8 +40,9 @@ require.config({
 
 require([
   'jquery',
+  'Backbone',
   'app/routers/router'
-], function( $, Router ) {
+], function( $, Router, Backbone ) {
 
   new Router({ el: $('#projects') });
   Backbone.history.start();

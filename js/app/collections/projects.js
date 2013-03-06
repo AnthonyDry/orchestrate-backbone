@@ -1,13 +1,11 @@
 define([
-  'underscore',
   'backbone',
-  'backboneLocalstorage',
   '../models/project'
-], function( _, Backbone, Store, Project ) {
+], function( Backbone, Project ) {
 
   var ProjectsCollection = Backbone.Collection.extend({
     model: Project,
-    localStorage: new Store('projects-backbone'),
+    localStorage: new Backbone.localStorage('projects-backbone'),
     archived: function() {
       return this.filter(function( project ) {
         return project.get('archived');
