@@ -1,9 +1,8 @@
  define([
   'jquery',
   'backbone',
-  'handlebars',
-  '../collections/statuses'
-], function( $, Backbone, Handlebars, Statuses ) {
+  'handlebars'
+], function( $, Backbone, Handlebars ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
