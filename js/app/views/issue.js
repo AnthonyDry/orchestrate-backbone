@@ -3,7 +3,7 @@ define([
   'backbone',
   'handlebars',
   '../collections/issues',
-  '../views/issuelist'
+  '../views/issue-in-list'
 ], function( $, Backbone, Handlebars, Issues, IssueListView ) {
 
   var template = function(name) {
@@ -13,7 +13,7 @@ define([
   var IssueView = Backbone.View.extend({
     template: template('issue'),
     initialize: function(options) {
-      this.issues = Issues;
+      this.issues = new Issues();
       //this.issues.on('all', this.render, this);
       this.issues.fetch();
       this.el = options.el;

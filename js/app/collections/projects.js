@@ -5,7 +5,7 @@ define([
 
   var ProjectsCollection = Backbone.Collection.extend({
     model: Project,
-    localStorage: new Backbone.localStorage('projects-backbone'),
+    localStorage: new Backbone.LocalStorage('projects-backbone'),
     archived: function() {
       return this.filter(function( project ) {
         return project.get('archived');
@@ -22,5 +22,5 @@ define([
     }
   });
 
-  return new ProjectsCollection();
+  return ProjectsCollection;
 });

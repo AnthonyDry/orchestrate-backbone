@@ -40,9 +40,9 @@ require.config({
 
 require([
   'jquery',
-  'Backbone',
+  'backbone',
   'app/routers/router'
-], function( $, Router, Backbone ) {
+], function( $, Backbone, Router ) {
 
   new Router({ el: $('#projects') });
   Backbone.history.start();

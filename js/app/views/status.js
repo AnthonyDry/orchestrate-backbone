@@ -3,7 +3,7 @@ define([
   'backbone',
   'handlebars',
   '../collections/statuses',
-  '../views/statuslist'
+  '../views/status-in-list'
 ], function( $, Backbone, Handlebars, Statuses, StatusListView ) {
 
   var template = function(name) {
@@ -13,7 +13,7 @@ define([
   var StatusView = Backbone.View.extend({
     template: template('status'),
     initialize: function() {
-      this.statuses = Statuses;
+      this.statuses = new Statuses();
       this.statuses.on('all', this.render, this);
       this.statuses.fetch();
     },

@@ -3,7 +3,7 @@ define([
   'backbone',
   'handlebars',
   '../collections/projects',
-  '../views/projectlist',
+  '../views/project-in-list',
   '../views/project',
   '../views/issue'
 ], function( $, Backbone, Handlebars, Projects, ProjectListView, ProjectView, IssueView ) {
@@ -15,7 +15,7 @@ define([
   var AppView = Backbone.View.extend({
     template: template('app'),
     initialize: function() {
-      this.projects = Projects;
+      this.projects = new Projects();
       this.projects.on('all', this.render, this);
       this.projects.fetch();
       this.ws = $('.workspace');
