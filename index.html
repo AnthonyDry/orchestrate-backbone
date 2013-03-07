@@ -142,8 +142,8 @@
           <input id="issueTitle" type="text" placeholder="Title">
           <input id="issueDescription" type="text" placeholder="Description">
           <select id="all-statuses">
-            {{#each statuses}}
-              <option id="{{id}}">{{statusTitle}}</option>
+            {{#each statuses.models}}
+              <option data-status-id="{{id}}">{{this.attributes.statusTitle}}</option>
             {{/each}}
           </select>
           <button type="submit" class="btn btn-inverse" id="addissue">Add</button>
@@ -168,7 +168,7 @@
     <script type="text/x-handlebars-template" id="issue-list-template">
       <td>{{ issueTitle }}</td>
       <td>{{ issueDescription }}</td>
-      <td>STATUS</td>
+      <td>{{ status }}</td>
       <td><button type="button" class="close delete-issue">&times;</button></td>
     </script>
 

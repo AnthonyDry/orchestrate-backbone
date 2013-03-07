@@ -21,6 +21,7 @@
     
     issueTitle: function() { return this.model.get('issueTitle'); },
     issueDescription: function () { return this.model.get('issueDescription'); },
+    // status: function() { return this.model.fetchRelated('status'); },
 
     delete: function() {
       this.model.destroy();

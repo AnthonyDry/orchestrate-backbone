@@ -15,7 +15,6 @@ define([
     initialize: function(options) {
       this.statuses = new Statuses();
       this.statuses.fetch();
-      console.log(this.statuses.toJSON());
     },
     events: {
       'click #addissue': 'createIssue'
@@ -25,13 +24,14 @@ define([
       return this;
     },
 
-    statuses: function() { return this.statuses.toJSON(); },
+    // statusList: function() { return this.statuses.toJSON(); },
 
     createIssue: function(event) {
       event.preventDefault();
       var issue = new Issue({
         issueTitle: this.$('#issueTitle').val().trim(),
-        issueDescription: this.$('#issueDescription').val().trim()
+        issueDescription: this.$('#issueDescription').val().trim(),
+        status: this.$('#all-statuses option:selected').data("status-id")
       });
       this.trigger("newIssue", issue);
     }
