@@ -13,7 +13,6 @@
   var ProjectFullView = Backbone.View.extend({
     template: template('project-full'),
     initialize: function(options) {
-      this.render();
     },
     render: function() {
       this.$el.html(this.template(this));

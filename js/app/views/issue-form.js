@@ -14,7 +14,8 @@ define([
     template: template('issue-form'),
     initialize: function(options) {
       this.statuses = new Statuses();
-      console.log(this.statuses);
+      this.statuses.fetch();
+      console.log(this.statuses.toJSON());
     },
     events: {
       'click #addissue': 'createIssue'
@@ -24,7 +25,7 @@ define([
       return this;
     },
 
-    // statuses: function() { return this.statuses.toJSON(); },
+    statuses: function() { return this.statuses.toJSON(); },
 
     createIssue: function(event) {
       event.preventDefault();
