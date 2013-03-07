@@ -143,7 +143,7 @@
           <input id="issueDescription" type="text" placeholder="Description">
           <select id="all-statuses">
             {{#each statuses}}
-              <option>{{statusTitle}}</option>
+              <option id="{{id}}">{{statusTitle}}</option>
             {{/each}}
           </select>
           <button type="submit" class="btn btn-inverse" id="addissue">Add</button>

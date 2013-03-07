@@ -2,10 +2,9 @@
   'jquery',
   'backbone',
   'handlebars',
-  '../collections/statuses',
   '../views/issues',
   '../views/issue-form'
-], function( $, Backbone, Handlebars, Statuses, IssuesView, IssueFormView ) {
+], function( $, Backbone, Handlebars, IssuesView, IssueFormView ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
