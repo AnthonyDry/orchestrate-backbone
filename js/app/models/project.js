@@ -5,8 +5,8 @@ define([
   '../collections/issues'
 ], function( _, Backbone, Issue, Issues ) {
 
-  var ProjectModel = Backbone.RelationalModel.extend({
-    relations: [{
+  var ProjectModel = Backbone.Model.extend({//RelationalModel.extend({
+    /*relations: [{
       type: Backbone.HasMany,
       key: 'issues',
       relatedModel: Issue,
@@ -15,18 +15,16 @@ define([
         key: 'project',
         includeInJSON: 'id'
       }
-    }],
+    }],*/
     defaults: {
       title: 'Title',
-      archived: false
+      archived: false,
+      issues: []
     },
     toggle: function() {
       this.save({
         archived: !this.get('archived')
       });
-    },
-    initalize: function () {
-      this.fetchRelated('issues');
     }
   });
 

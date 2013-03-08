@@ -5,8 +5,11 @@ define([
 
   var StatusesCollection = Backbone.Collection.extend({
     model: Status,
-    localStorage: new Backbone.LocalStorage('statuses-backbone')
+    localStorage: new Backbone.LocalStorage('statuses-backbone'),
+    initialize: function(){
+      this.fetch();
+    }
   });
 
-  return StatusesCollection;
+  return new StatusesCollection();
 });

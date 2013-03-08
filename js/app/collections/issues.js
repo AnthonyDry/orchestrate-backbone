@@ -5,8 +5,11 @@ define([
 
   var IssuesCollection = Backbone.Collection.extend({
     model: Issue,
-    localStorage: new Backbone.LocalStorage('issues-backbone')
+    localStorage: new Backbone.LocalStorage('issues-backbone'),
+    initialize: function(){
+      this.fetch();
+    }
   });
 
-  return IssuesCollection;
+  return new IssuesCollection();
 });

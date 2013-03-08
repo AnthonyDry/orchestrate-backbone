@@ -4,7 +4,7 @@ define([
   'handlebars',
   '../models/issue',
   '../collections/statuses'
-], function( $, Backbone, Handlebars, Issue, Statuses ) {
+], function( $, Backbone, Handlebars, Issue, statuses ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
@@ -13,8 +13,8 @@ define([
   var IssueFormView = Backbone.View.extend({
     template: template('issue-form'),
     initialize: function(options) {
-      this.statuses = new Statuses();
-      this.statuses.fetch();
+      this.statuses = statuses;
+      this.listenTo(statuses,"all",this.render,this);
     },
     events: {
       'click #addissue': 'createIssue'
