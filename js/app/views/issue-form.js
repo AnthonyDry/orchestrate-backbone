@@ -11,12 +11,12 @@ define([
     initialize: function(options) {
       this.statuses = statuses;
       this.listenTo(statuses,"all",this.render,this); // listen to if statuses are updated
-      this.statuslist = this.statuses.toJSON(); // to populate the select
     },
     events: {
       'click #addissue': 'createIssue'
     },
     render: function() {
+      this.statuslist = this.statuses.toJSON(); // to populate the select
       this.$el.html(this.template(this));
       return this;
     },
