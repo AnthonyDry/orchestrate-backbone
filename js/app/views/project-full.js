@@ -8,12 +8,8 @@
   'underscore'
 ], function( $, Backbone, Handlebars, IssuesView, IssueFormView, issues, _ ) {
 
-  var template = function(name) {
-    return Handlebars.compile($('#'+name+'-template').html());
-  };
-
   var ProjectFullView = Backbone.View.extend({
-    template: template('project-full'),
+    template: Handlebars.compile($('#project-full-template').html()),
     initialize: function(options) {
     },
     render: function() {
@@ -36,16 +32,17 @@
       issue.save();
       this.model.set("issues",this.model.get("issues").concat(issue.id));
       this.model.save();
+      
       console.log("ADDED ISSUE",issue,this.model.get("issues"));
     },
 
     removeIssue: function(issue){
       console.log("REMOVING ISSUE",issue);
+      
       var myissues = this.model.get(issues);
       this.model.set("issues",_.without(myissues,issue.id));
       this.model.save();
       issue.destroy();
-      //issues.remove(issue);
     }
   });
 

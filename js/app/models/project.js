@@ -5,17 +5,7 @@ define([
   '../collections/issues'
 ], function( _, Backbone, Issue, Issues ) {
 
-  var ProjectModel = Backbone.Model.extend({//RelationalModel.extend({
-    /*relations: [{
-      type: Backbone.HasMany,
-      key: 'issues',
-      relatedModel: Issue,
-      collectionType: Issues,
-      reverseRelation: {
-        key: 'project',
-        includeInJSON: 'id'
-      }
-    }],*/
+  var ProjectModel = Backbone.Model.extend({
     defaults: {
       title: 'Title',
       archived: false,

@@ -6,12 +6,8 @@ define([
   '../views/status'
 ], function( $, Backbone, Handlebars, statuses, StatusView ) {
 
-  var template = function(name) {
-    return Handlebars.compile($('#'+name+'-template').html());
-  };
-
   var StatusesView = Backbone.View.extend({
-    template: template('status'),
+    template: Handlebars.compile($('#status-template').html()),
     initialize: function() {
       this.statuses = statuses;
       this.statuses.on('all', this.render, this);

@@ -7,22 +7,21 @@ define([
   "underscore"
 ], function( $, Backbone, Handlebars, issues, IssueView, _ ) {
 
-  var template = function(name) {
-    return Handlebars.compile($('#'+name+'-template').html());
-  };
-
   var IssuesView = Backbone.View.extend({
-    template: template('issue'),
+    template: Handlebars.compile($('#issue-template').html()),
     initialize: function(options) {
       this.listenTo(this.model,"change:issues",this.render,this);
     },
     render: function() {
       this.$el.html(this.template(this));
+      
       var myissues = issues.filter(function(issue){
         return _.contains(this.model.get("issues"),issue.id);
       },this);
-      _.each(myissues,this.populateIssueList,this);
+      _.each(myissues, this.populateIssueList, this);
+      
       console.log("RENDERING ISSUES",issues.length,this.model.id,"myissues",this.model.get("issues"));
+      
       return this;
     },
 

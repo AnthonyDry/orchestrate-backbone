@@ -7,12 +7,8 @@ define([
   '../views/project-full'
 ], function( $, Backbone, Handlebars, projects, ProjectView, ProjectFullView ) {
 
-  var template = function(name) {
-    return Handlebars.compile($('#'+name+'-template').html());
-  };
-
   var ProjectsView = Backbone.View.extend({
-    template: template('project'),
+    template: Handlebars.compile($('#project-template').html()),
     initialize: function() {
       this.projects = projects;
       this.projects.on('all', this.render, this);

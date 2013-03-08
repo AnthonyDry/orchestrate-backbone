@@ -4,12 +4,8 @@
   'handlebars'
 ], function( $, Backbone, Handlebars ) {
 
-  var template = function(name) {
-    return Handlebars.compile($('#'+name+'-template').html());
-  };
-
   var StatusView = Backbone.View.extend({
-    template: template('status-list'),
+    template: Handlebars.compile($('#status-list-template').html()),
     
     events: {
       'click .delete-status': 'delete'

@@ -4,16 +4,13 @@
   'handlebars'
 ], function( $, Backbone, Handlebars ) {
 
-  var template = function(name) {
-    return Handlebars.compile($('#'+name+'-template').html());
-  };
-
   var ProjectView = Backbone.View.extend({
-    template: template('project-list'),
+    template: Handlebars.compile($('#project-list-template').html()),
     
     events: {
       'click .delete-project': 'delete'
     },
+    
     render: function() {
       this.$el.html(this.template(this));
       return this;

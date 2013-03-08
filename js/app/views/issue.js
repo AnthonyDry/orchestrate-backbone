@@ -5,13 +5,9 @@
   '../collections/statuses'
 ], function( $, Backbone, Handlebars, statuses ) {
 
-  var template = function(name) {
-    return Handlebars.compile($('#'+name+'-template').html());
-  };
-
-  var IssueListView = Backbone.View.extend({
+  var IssueView = Backbone.View.extend({
     tagName: 'tr',
-    template: template('issue-list'),
+    template: Handlebars.compile($('#issue-list-template').html()),
     events: {
       'click .delete-issue': 'delete'
     },
@@ -23,15 +19,15 @@
       return this;
     },
     
+    // Helpers for Handelbars
     issueTitle: function() { return this.model.get('issueTitle'); },
     issueDescription: function () { return this.model.get('issueDescription'); },
-    // status: function() { return this.model.fetchRelated('status'); },
 
+    // Handled in the ProjectFullView
     delete: function() {
       this.trigger("removeIssue",this.model);
-      //this.model.destroy();
     }
   });
 
-  return IssueListView;
+  return IssueView;
 });
