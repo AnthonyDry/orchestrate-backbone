@@ -3,8 +3,10 @@
   'backbone',
   'handlebars',
   '../views/issues',
-  '../views/issue-form'
-], function( $, Backbone, Handlebars, IssuesView, IssueFormView ) {
+  '../views/issue-form',
+  '../collections/issues',
+  'underscore'
+], function( $, Backbone, Handlebars, IssuesView, IssueFormView, issues, _ ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
@@ -21,17 +23,29 @@
       issueFormView.render();
       issueFormView.on("newIssue", this.addIssue, this);
 
-      var issuesView = new IssuesView({ el: this.$('#issue-table'), collection: this.model.get('issues') });
+      var issuesView = new IssuesView({ el: this.$('#issue-table'), model: this.model });
       issuesView.render();
+      issuesView.on("removeIssue", this.removeIssue, this);
 
       return this;
     },
     title: function() { return this.model.get('title'); },
 
     addIssue: function(issue) {
-      this.model.get('issues').add(issue);
+      issues.add(issue);
       issue.save();
+      this.model.set("issues",this.model.get("issues").concat(issue.id));
       this.model.save();
+      console.log("ADDED ISSUE",issue,this.model.get("issues"));
+    },
+
+    removeIssue: function(issue){
+      console.log("REMOVING ISSUE",issue);
+      var myissues = this.model.get(issues);
+      this.model.set("issues",_.without(myissues,issue.id));
+      this.model.save();
+      issue.destroy();
+      //issues.remove(issue);
     }
   });
 

@@ -19,8 +19,11 @@ define([
     },
     comparator: function( project ) {
       return project.get('order');
+    },
+    initialize: function(){
+      this.fetch();
     }
   });
 
-  return ProjectsCollection;
+  return new ProjectsCollection();
 });

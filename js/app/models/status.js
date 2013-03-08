@@ -5,8 +5,8 @@ define([
   '../collections/issues'
 ], function( _, Backbone, Issue, Issues ) {
 
-  var StatusModel = Backbone.RelationalModel.extend({
-    relations: [{
+  var StatusModel = Backbone.Model.extend({ //.RelationalModel.extend({
+    /*relations: [{
       type: Backbone.HasMany,
       key: 'issues',
       relatedModel: Issue,
@@ -15,9 +15,10 @@ define([
         key: 'status',
         includeInJSON: 'id'
       }
-    }],
+    }],*/
     defaults: {
-      statusTitle: 'Title'
+      statusTitle: 'Title',
+      issues: []
     }
   });
 

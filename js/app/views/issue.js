@@ -1,8 +1,9 @@
  define([
   'jquery',
   'backbone',
-  'handlebars'
-], function( $, Backbone, Handlebars ) {
+  'handlebars',
+  '../collections/statuses'
+], function( $, Backbone, Handlebars, statuses ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
@@ -14,6 +15,9 @@
     events: {
       'click .delete-issue': 'delete'
     },
+    initialize: function(){
+      this.listenTo(statuses,"remove",this.render,this);
+    },
     render: function() {
       this.$el.html(this.template(this));
       return this;
@@ -24,7 +28,8 @@
     // status: function() { return this.model.fetchRelated('status'); },
 
     delete: function() {
-      this.model.destroy();
+      this.trigger("removeIssue",this.model);
+      //this.model.destroy();
     }
   });
 

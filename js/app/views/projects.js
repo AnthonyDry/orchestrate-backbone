@@ -5,7 +5,7 @@ define([
   '../collections/projects',
   '../views/project',
   '../views/project-full'
-], function( $, Backbone, Handlebars, Projects, ProjectView, ProjectFullView ) {
+], function( $, Backbone, Handlebars, projects, ProjectView, ProjectFullView ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
@@ -14,9 +14,8 @@ define([
   var ProjectsView = Backbone.View.extend({
     template: template('project'),
     initialize: function() {
-      this.projects = new Projects();
+      this.projects = projects;
       this.projects.on('all', this.render, this);
-      this.projects.fetch();
       this.ws = $('.workspace');
     },
     events: {

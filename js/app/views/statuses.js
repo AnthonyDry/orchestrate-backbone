@@ -4,7 +4,7 @@ define([
   'handlebars',
   '../collections/statuses',
   '../views/status'
-], function( $, Backbone, Handlebars, Statuses, StatusView ) {
+], function( $, Backbone, Handlebars, statuses, StatusView ) {
 
   var template = function(name) {
     return Handlebars.compile($('#'+name+'-template').html());
@@ -13,9 +13,8 @@ define([
   var StatusesView = Backbone.View.extend({
     template: template('status'),
     initialize: function() {
-      this.statuses = new Statuses();
+      this.statuses = statuses;
       this.statuses.on('all', this.render, this);
-      this.statuses.fetch();
     },
     events: {
       'click #addstatus': 'addStatus'
