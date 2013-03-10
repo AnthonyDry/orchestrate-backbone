@@ -3,7 +3,7 @@ define([
   'backbone'
 ], function( _, Backbone ) {
 
-  var IssueModel = Backbone.RelationalModel.extend({
+  var IssueModel = Backbone.Model.extend({
   	url: "/",
     defaults: {
       issueTitle: 'Title',

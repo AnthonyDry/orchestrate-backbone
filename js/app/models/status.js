@@ -1,9 +1,7 @@
 define([
   'underscore',
-  'backbone',
-  '../models/issue',
-  '../collections/issues'
-], function( _, Backbone, Issue, Issues ) {
+  'backbone'
+], function( _, Backbone ) {
 
   var StatusModel = Backbone.Model.extend({
     defaults: {

@@ -30,6 +30,7 @@
     addIssue: function(issue) {
       issues.add(issue);
       issue.save();
+      console.log(issue);
       this.model.set("issues",this.model.get("issues").concat(issue.id));
       this.model.save();
       
