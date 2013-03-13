@@ -68,8 +68,13 @@ define([
 
     addStatus: function(event) {
       event.preventDefault();
+
+      var title = this.$el.find('#statusTitle').val().trim();
+
+      if (!title) { return; }
+
       this.statuses.create({
-        statusTitle: this.$('#statusTitle').val().trim()
+        statusTitle: title
       });
     }
   });
