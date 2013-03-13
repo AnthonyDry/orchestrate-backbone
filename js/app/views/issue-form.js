@@ -53,11 +53,17 @@ define([
 
     createIssue: function(event) {
       event.preventDefault();
+      var title = this.$el.find('#issueTitle').val().trim();
+      var desc = this.$el.find('#issueDescription').val().trim();
+      
+      if (!title && !desc) { return; }
+
       var issue = new Issue({
-        issueTitle: this.$('#issueTitle').val().trim(),
-        issueDescription: this.$('#issueDescription').val().trim(),
+        issueTitle: title,
+        issueDescription: desc,
         status: this.$('#all-statuses option:selected').data("status-id")
       });
+
       this.trigger("newIssue", issue);
     }
   });

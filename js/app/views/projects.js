@@ -73,8 +73,13 @@ define([
 
     addProject: function(event) {
       event.preventDefault();
+
+      var title = this.$el.find('#title').val().trim();
+
+      if (!title) { return; }
+
       this.projects.create({
-        title: this.$('#title').val().trim()
+        title: title
       });
     },
 
