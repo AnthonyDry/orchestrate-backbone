@@ -56,7 +56,7 @@ define([
       var title = this.$el.find('#issueTitle').val().trim();
       var desc = this.$el.find('#issueDescription').val().trim();
       
-      if (!title && !desc) { return; }
+      if (title == "" && desc == "") { return; }
 
       var issue = new Issue({
         issueTitle: title,

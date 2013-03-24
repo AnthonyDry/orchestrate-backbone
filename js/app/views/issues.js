@@ -52,6 +52,7 @@ define([
       this.listenTo(view,"removeIssue",function(issue){
         this.trigger("removeIssue",issue);
       },this);
+      
     },
 
     /**

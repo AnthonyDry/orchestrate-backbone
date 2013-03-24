@@ -7,7 +7,8 @@ require.config({
     purebackbone: 'libs/backbone/Backbone',
     'bb-loc': 'libs/backbone/backboneLocalstorage',
     'bb-rel': 'libs/backbone/backbone.relational',
-    backbone: 'libs/backbone/backbone.all'
+    backbone: 'libs/backbone/backbone.all',
+    'bootstrap':'libs/bootstrap/bootstrap.min'
   },
 	shim: {
 		underscore: {
@@ -34,6 +35,10 @@ require.config({
     },
     handlebars: {
       exports: 'Handlebars'
+    },
+    'bootstrap': {
+          deps: ['jquery'],
+          exports: "$.fn.popover"
     }
 	}
 });

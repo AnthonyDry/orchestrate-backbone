@@ -93,6 +93,7 @@
 
     <!-- Le handlebars templates
     ================================================== -->
+    <!-- Add project template -->
     <script type="text/x-handlebars-template" id="project-template">
       <li class="nav-header">Projects ({{ projectCount }})</li>
       <div id="project-list"></div>
@@ -104,7 +105,7 @@
         </div>
       </form>
     </script>
-
+    <!-- status template -->
     <script type="text/x-handlebars-template" id="status-template">
       <li class="nav-header">Statuses ({{ statusCount }})</li>
       <div id="status-list"></div>
@@ -116,7 +117,7 @@
         </div>
       </form>
     </script>
-    
+    <!-- list of projects template -->
     <script type="text/x-handlebars-template" id="project-list-template">
       <button type="button" class="close delete-project">&times;</button>
       <li><a href="#" class="project" data-id="{{ id }}">{{ title }}</a></li>

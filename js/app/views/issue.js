@@ -3,8 +3,9 @@
   'jquery',
   'backbone',
   'handlebars',
-  '../collections/statuses'
-], function( _, $, Backbone, Handlebars, statuses ) {
+  '../collections/statuses',
+  'bootstrap'
+], function( _, $, Backbone, Handlebars, statuses, bootstrap) {
 
   var IssueView = Backbone.View.extend({
     tagName: 'tr',
@@ -18,9 +19,8 @@
     /**
      * Bind events.
      */
-
     events: {
-      'click .delete-issue': 'delete'
+      'click .delete-issue': 'delete',
     },
 
     /**
@@ -29,6 +29,15 @@
 
     initialize: function(){
       this.listenTo(statuses,"remove",this.render,this);
+      //moved out of render()
+      var statusId = this.model.get('status');
+      this.statusModel = statuses.get(statusId);
+      if (this.statusModel) {
+        this.status = this.statusModel.get("statusTitle");
+      } else {
+        this.status = "Unknown";
+      }
+      
     },
 
     /**
@@ -36,14 +45,11 @@
      */
 
     render: function() {
-      var statusId = this.model.get('status');
-      var statusModel = statuses.get(statusId);
-      if (statusModel) {
-        this.status = statusModel.get("statusTitle");
+      if (this.statusModel) {
+        this.status = this.statusModel.get("statusTitle");
       } else {
         this.status = "Unknown";
       }
-
       this.$el.html(this.template(this));
       return this;
     },
@@ -55,7 +61,7 @@
      *
      * @return {String}
      */
-
+     
     issueTitle: function() { return this.model.get('issueTitle'); },
 
     /**
@@ -65,7 +71,6 @@
      */
 
     issueDescription: function () { return this.model.get('issueDescription'); },
-
     // Handled in the ProjectFullView
 
     /**

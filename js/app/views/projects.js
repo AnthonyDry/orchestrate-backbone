@@ -23,7 +23,7 @@ define([
 
     initialize: function() {
       this.projects = projects;
-      this.projects.on('all', this.render, this);
+      this.projects.on('add', this.render, this);
       this.ws = $('.workspace');
     },
 
@@ -75,8 +75,8 @@ define([
       event.preventDefault();
 
       var title = this.$el.find('#title').val().trim();
-
-      if (!title) { return; }
+      //Fixed your issue with title still being added even if it was empty.
+      if (title === '' || title === null) { return; }
 
       this.projects.create({
         title: title
